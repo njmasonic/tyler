@@ -17,6 +17,7 @@ describe SsoSessionsController do
 
     before do
       Consumer.stub(:find_by_name).with('lodge00').and_return(consumer)
+      Token.stub(:find_or_create_by_consumer_id_and_user_id).with(consumer, user).and_return(token)
       controller.stub(:current_user).and_return(user)
       user.stub(:current_token).and_return(token)
       token.should_receive(:ensure_current!)
@@ -39,7 +40,7 @@ describe SsoSessionsController do
 
     before do
       Consumer.stub(:find_by_name).with('lodge00').and_return(consumer)
-      Token.stub(:create!).with(user: user).and_return(token)
+      Token.stub(:find_or_create_by_consumer_id_and_user_id).with(consumer, user).and_return(token)
       controller.stub(:authenticate).with(hash_including('session' => hash_including('email' => 'tom@smith.net', 'password' => '1234'))).and_return(user)
       controller.should_receive(:sign_in).with(user)
       token.should_receive(:ensure_current!)

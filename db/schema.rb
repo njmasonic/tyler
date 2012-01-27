@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120126200148) do
+ActiveRecord::Schema.define(:version => 20120127010005) do
 
   create_table "consumers", :force => true do |t|
     t.string   "name"
@@ -23,10 +23,12 @@ ActiveRecord::Schema.define(:version => 20120126200148) do
   create_table "tokens", :force => true do |t|
     t.string   "token"
     t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.integer  "consumer_id"
   end
 
+  add_index "tokens", ["consumer_id", "user_id"], :name => "index_tokens_on_consumer_id_and_user_id"
   add_index "tokens", ["token"], :name => "index_tokens_on_token"
 
   create_table "users", :force => true do |t|

@@ -4,6 +4,7 @@ describe Token do
   let(:token) { Token.create!(user: mock_model(User)) }
 
   it { should belong_to(:user) }
+  it { should belong_to(:consumer) }
 
   describe ".create!" do
     it "should generate a random token" do

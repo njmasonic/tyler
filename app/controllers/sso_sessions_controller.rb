@@ -3,7 +3,7 @@ class SsoSessionsController < Clearance::SessionsController
     if current_user
       consumer = Consumer.find_by_name(params[:consumer])
       raise "Invalid or no consumer provided." if consumer.nil?
-      redirect_to_consumer_with_token(consumer, current_user.current_token)
+      redirect_to_consumer(consumer, current_user)
     else
       render 'new'
     end
@@ -17,15 +17,19 @@ class SsoSessionsController < Clearance::SessionsController
       flash_failure_after_create
       render 'new', :status => :unauthorized
     else
-      token = Token.create! user: @user
       sign_in(@user)
-      redirect_to_consumer_with_token(consumer, token)
+      redirect_to_consumer(consumer, @user)
     end
   end
 
   private
 
-  def redirect_to_consumer_with_token(consumer, token)
+  def fetch_token(consumer, user)
+    Token.find_or_create_by_consumer_id_and_user_id(consumer, user)
+  end
+
+  def redirect_to_consumer(consumer, user)
+    token = fetch_token(consumer, user)
     token.ensure_current!
     redirect_to "#{consumer.return_url}?token=#{token.token}"
   end
