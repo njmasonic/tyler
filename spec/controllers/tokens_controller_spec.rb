@@ -26,4 +26,15 @@ describe TokensController do
       response.response_code.should == 404
     end
   end
+
+  describe "#validate", "with a non-existant token" do
+    before do
+      Token.stub(:find_by_token).with('1234').and_return(nil)
+      get :validate, token: '1234'
+    end
+
+    it "should return an error" do
+      response.response_code.should == 404
+    end
+  end
 end

@@ -1,7 +1,7 @@
 class TokensController < ApplicationController
   def validate
     @token = Token.find_by_token(params[:token])
-    if @token.expired?
+    if @token.nil? || @token.expired?
       render :json => nil, :status => :not_found
     else
       render :json => @token.to_json(
