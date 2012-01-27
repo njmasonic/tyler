@@ -1,0 +1,11 @@
+defaults: &defaults
+  system_name: Tyler SSO
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

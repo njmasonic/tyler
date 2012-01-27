@@ -16,3 +16,6 @@
 
 # Ignore vim swap files
 *.swp
+
+# Ignore config file (see config/config.example.yml)
+config/config.yml
