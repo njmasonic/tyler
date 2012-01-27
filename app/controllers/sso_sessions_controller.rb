@@ -26,6 +26,7 @@ class SsoSessionsController < Clearance::SessionsController
   private
 
   def redirect_to_consumer_with_token(consumer, token)
+    token.ensure_current!
     redirect_to "#{consumer.return_url}?token=#{token.token}"
   end
 end

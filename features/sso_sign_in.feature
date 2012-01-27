@@ -16,7 +16,7 @@ Feature: SSO Sign in
     And I should have a valid token for "tom@smith.net"
 
   @mechanize
-  Scenario: A user who has already signed in is immediately redirected with his existing token
+  Scenario: A user who has already signed in is immediately redirected
     When I sign in as "tom@smith.net" through consumer "lodge00"
     And consumer "lodge01" sends me to the sign in page
     Then I should be redirected to the "lodge01" consumer
