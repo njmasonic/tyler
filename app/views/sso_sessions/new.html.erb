@@ -1,12 +1,20 @@
-<h2>Sign in</h2>
-
-<%= render :partial => 'form' %>
-
-<ul>
-  <li>
-    <%= link_to "Sign up", sign_up_path %>
-  </li>
-  <li>
-    <%= link_to "Forgot password?", new_password_path %>
-  </li>
-</ul>
+<div style="height: 100px">&nbsp;</div>
+<div class="row">
+  <div class="span1">&nbsp;</div>
+  <div class="span6">
+    <%= render :partial => 'form' %>
+  </div>
+  <div class="span2">&nbsp;</div>
+  <div class="span6">
+    <h3>Register</h3>
+    <ul class="sign_in">
+      <li>
+        <%= link_to "Sign up for an account", sign_up_path %>
+      </li>
+      <li>
+        <%= link_to "Forgot password?", new_password_path %>
+      </li>
+    </ul>
+  </div>
+  <div class="span1">&nbsp;</div>
+</div>
