@@ -1,8 +1,0 @@
-<%= form_for :session, :url => sso_session_path, :builder => BootstrapFormBuilder do |form| %>
-  <%= form.section "Sign in" do %>
-    <%= form.hidden_field :consumer, :value => params[:consumer] %>
-    <%= form.text_field :email, :type => "email" %>
-    <%= form.password_field :password %>
-    <%= form.submit "Sign in" %>
-  <% end %>
-<% end %>
