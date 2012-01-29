@@ -3,6 +3,7 @@ Tyler::Application.routes.draw do
 
   resource :session, controller: 'sessions', only: [:new, :create, :destroy]
   match '/sign_in', controller: 'sessions', action: 'new', as: 'sign_in'
+  match '/sign_out', controller: 'sessions', action: 'destroy', as: 'sign_out'
 
   resources :users, only: [:new, :create, :show]
   match '/sign_up', controller: 'users', action: 'new', as: 'sign_up'
