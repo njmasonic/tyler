@@ -5,7 +5,7 @@ class TokensController < ApplicationController
       render :json => nil, :status => :not_found
     else
       render :json => @token.to_json(
-        :only => [:created_at],
+        :only => [:created_at, :updated_at],
         :include => [
           :user => { :only => [:email] }
         ]
