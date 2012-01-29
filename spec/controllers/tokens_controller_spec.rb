@@ -2,10 +2,12 @@ require 'spec_helper'
 
 describe TokensController do
   describe "#validate", "with a valid token" do
-    let(:token) { mock_model(Token, token: '1234', to_json: 'mockjson', expired?: false) }
+    let(:token) { mock_model(Token, token: '1234', expired?: false) }
+    let(:token_serializer) { mock(TokenSerializer, to_json: 'mockjson') }
 
     before do
       Token.stub(:find_by_token).with('1234').and_return(token)
+      TokenSerializer.stub(:new).with(token).and_return(token_serializer)
       get :validate, token: '1234'
     end
 

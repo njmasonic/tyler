@@ -4,12 +4,7 @@ class TokensController < ApplicationController
     if @token.nil? || @token.expired?
       render :json => nil, :status => :not_found
     else
-      render :json => @token.to_json(
-        :only => [:created_at, :updated_at],
-        :include => [
-          :user => { :only => [:email] }
-        ]
-      )
+      render :json => TokenSerializer.new(@token).to_json
     end
   end
 end
