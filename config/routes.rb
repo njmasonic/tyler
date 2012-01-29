@@ -3,7 +3,14 @@ Tyler::Application.routes.draw do
 
   resource :sso_session, controller: 'sso_sessions', only: [:new, :create, :destroy]
 
+  resources :users, only: [:new, :create]
+  match '/sign_up', controller: 'users', action: 'new', as: 'sign_up'
+
   match '/validate', controller: 'tokens', action: 'validate', as: 'validate'
+
+  namespace :api do
+    resources :authorizations
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

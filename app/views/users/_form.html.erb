@@ -1,8 +1,7 @@
-<div class="text_field">
-  <%= form.label :email %>
-  <%= form.text_field :email, :type => "email" %>
-</div>
-<div class="password_field">
-  <%= form.label :password %>
-  <%= form.password_field :password %>
-</div>
+<%= form.fields_for :registration do |registration_form| %>
+  <% @registration_properties.each do |registration_property| %>
+    <%= registration_form.text_field registration_property %>
+  <% end %>
+<% end %>
+<%= form.text_field :email, :type => "email" %>
+<%= form.password_field :password %>

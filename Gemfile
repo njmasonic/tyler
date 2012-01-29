@@ -33,6 +33,8 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'factory_girl_rails'
   gem 'capybara-mechanize', '~> 0.3.0.rc3'
+  gem 'rack-test'
+  gem 'launchy'
 end
 
 # To use ActiveModel has_secure_password

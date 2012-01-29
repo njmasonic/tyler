@@ -1,11 +1,13 @@
 defaults: &defaults
   system_name: Tyler SSO
+  registration_properties:
+    - code
 
 development:
   <<: *defaults
 
 test:
-  <<: *defaults
+  system_name: Test System
 
 production:
   <<: *defaults

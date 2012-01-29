@@ -11,7 +11,25 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120127010005) do
+ActiveRecord::Schema.define(:version => 20120127114506) do
+
+  create_table "api_keys", :force => true do |t|
+    t.string   "key"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "api_keys", ["key"], :name => "index_api_keys_on_key"
+
+  create_table "authorizations", :force => true do |t|
+    t.string   "code"
+    t.text     "properties"
+    t.integer  "created_by_api_key_id"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+  end
+
+  add_index "authorizations", ["code"], :name => "index_authorizations_on_code"
 
   create_table "consumers", :force => true do |t|
     t.string   "name"
