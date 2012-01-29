@@ -1,8 +1,8 @@
 Feature: SSO Sign in
 
   In order to authenticate a user via Tyler
-  As a consumer service
-  I want to sign in through SSO
+  As a consumer website
+  I want the user to sign in
 
   Background:
     Given the consumer "lodge00" is enabled

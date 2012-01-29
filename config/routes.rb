@@ -1,9 +1,10 @@
 Tyler::Application.routes.draw do
-  root to: 'clearance/sessions#new'
+  root to: 'sessions#new'
 
-  resource :sso_session, controller: 'sso_sessions', only: [:new, :create, :destroy]
+  resource :session, controller: 'sessions', only: [:new, :create, :destroy]
+  match '/sign_in', controller: 'sessions', action: 'new', as: 'sign_in'
 
-  resources :users, only: [:new, :create]
+  resources :users, only: [:new, :create, :show]
   match '/sign_up', controller: 'users', action: 'new', as: 'sign_up'
 
   match '/validate', controller: 'tokens', action: 'validate', as: 'validate'

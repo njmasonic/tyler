@@ -29,5 +29,5 @@ Then /^I should have a valid token for "([^"]*)"$/ do |email|
 end
 
 When /^consumer "([^"]*)" sends me to the sign in page$/ do |consumer_name|
-  visit new_sso_session_path(consumer: consumer_name)
+  visit sign_in_path(consumer: consumer_name)
 end
