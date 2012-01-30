@@ -4,6 +4,9 @@ Feature: Sign up
   As a visitor
   I want to sign up
 
+  Background:
+    Given authorization is not required for registration
+
   Scenario: Visitor signs up with invalid email
     When I sign up with "invalidemail" and "password"
     Then I am told to enter a valid email address

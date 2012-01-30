@@ -15,9 +15,9 @@
           </span>
           <div class="pull-right">
             <% if signed_in? %>
-              <%= link_to "Sign out", sign_out_path, method: 'delete' %>
+              <%= link_to "Sign out", sign_out_path, method: 'delete', class: 'btn small' %>
             <% else %>
-              <%= link_to "Sign in", sign_in_path %>
+              <%= link_to "Sign in", sign_in_path, class: 'btn small' %>
             <% end %>
           </div>
         </div>

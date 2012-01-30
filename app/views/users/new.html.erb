@@ -1,6 +1,16 @@
-<h2>Sign up</h2>
-
-<%= form_for @user, :builder => BootstrapFormBuilder do |form| %>
-  <%= render :partial => '/users/form', :object => form %>
-  <%= form.submit 'Sign up' %>
-<% end %>
+<div class="row">
+  <div class="span1">&nbsp;</div>
+  <div class="span8">
+    <%= form_for @user, :builder => BootstrapFormBuilder do |form| %>
+      <%= render :partial => '/users/form', :object => form %>
+      <%= form.submit 'Sign up' %>
+    <% end %>
+  </div>
+  <div class="span4">
+    <h3>Help</h3>
+    <p>
+      Helpful information about registering for an account goes here. Talk about competing the required registration information, entering a valid e-mail address, selecting a new password, etc.
+    </p>
+  </div>
+  <div class="span3">&nbsp;</div>
+</div>

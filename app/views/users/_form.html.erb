@@ -1,7 +1,11 @@
-<%= form.fields_for :registration do |registration_form| %>
-  <% @registration_properties.each do |registration_property| %>
-    <%= registration_form.text_field registration_property %>
+<%= form.section "Registration Information" do %>
+  <%= form.fields_for :registration do |registration_form| %>
+    <% @registration_properties.each do |registration_property| %>
+      <%= registration_form.text_field registration_property %>
+    <% end %>
   <% end %>
 <% end %>
-<%= form.text_field :email, :type => "email" %>
-<%= form.password_field :password %>
+<%= form.section "Your New Account" do %>
+  <%= form.text_field :email, :type => "email" %>
+  <%= form.password_field :password %>
+<% end %>

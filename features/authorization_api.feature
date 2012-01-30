@@ -22,3 +22,15 @@ Feature: Authorization API
       | code         | 1234  |
       | last_name    | Smith |
       | zip_code     | 10001 |
+
+  @mechanize
+  Scenario: A user cannot register with incorrect authorization attributes
+    When I use the api key "abc123" to create the authorization:
+      | code         | 1234  |
+      | last_name    | Smith |
+      | zip_code     | 10001 |
+      | access_level | 42    |
+    Then I can't sign up "tom@smith.net" using:
+      | code         | 1234  |
+      | last_name    | Smith |
+      | zip_code     | 20000 |

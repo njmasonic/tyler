@@ -1,11 +1,14 @@
 # Existing users
 
 Given /^(?:I am|I have|I) signed up (?:as|with) "(.*)"$/ do |email|
-  Factory(:user, :email => email)
+  #Factory(:user, :email => email)
+  user = Factory.build(:user, :email => email)
+  user.save(validate: false)
 end
 
 Given /^a user "([^"]*)" exists without a salt, remember token, or password$/ do |email|
-  user = Factory(:user, :email => email)
+  user = Factory.build(:user, :email => email)
+  user.save(validate: false)
   sql  = "update users set salt = NULL, encrypted_password = NULL, remember_token = NULL where id = #{user.id}"
   ActiveRecord::Base.connection.update(sql)
 end
@@ -102,7 +105,7 @@ Then /^I am told email is unknown$/ do
 end
 
 Then /^I am told to enter a valid email address$/ do
-  page.should have_content("Must be a valid email address")
+  page.should have_content("Email is invalid")
 end
 
 Then /^I am told to enter a password$/ do

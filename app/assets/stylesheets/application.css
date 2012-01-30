@@ -26,6 +26,11 @@ h3
   line-height: 1;
 }
 
+p
+{
+  margin-top: 18px;
+}
+
 ul.sign_in
 {
   padding-top: 18px;
