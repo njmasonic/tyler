@@ -6,9 +6,26 @@ describe Api::AuthorizationsController do
     let(:valid_api_key) { mock_model(ApiKey) }
 
     before do
+      post_parameters = 
+      {
+        'key'           => 'validapikey',
+        'authorization' => 
+        {
+          'code' =>  '1234',
+          'other' => 'othervalue' 
+        }
+      }
+      create_parameters =
+      {
+        'code' => '1234',
+        'properties' => 
+        {
+          'other' => 'othervalue'
+        }
+      }
       ApiKey.stub(:find_by_key).with('validapikey').and_return(valid_api_key)
-      Authorization.stub(:create!).with('validparameters').and_return(authorization)
-      post :create, key: 'validapikey', authorization: 'validparameters'
+      Authorization.stub(:create!).with(create_parameters).and_return(authorization)
+      post :create, post_parameters
     end
 
     specify { response.code.should == '200' }
