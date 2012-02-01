@@ -7,7 +7,6 @@ Feature: Authorization API
   Background:
     Given the api key "abc123" is enabled
     And the following attributes are required for registration:
-      | code      |
       | last_name |
       | zip_code  |
 
@@ -34,3 +33,18 @@ Feature: Authorization API
       | code         | 1234  |
       | last_name    | Smith |
       | zip_code     | 20000 |
+
+  @mechanize
+  Scenario: A user cannot register twice with the same authorization attributes
+    When I use the api key "abc123" to create the authorization:
+      | code         | 1234  |
+      | last_name    | Smith |
+      | zip_code     | 10001 |
+    Then I can sign up "tom@smith.net" using:
+      | code         | 1234  |
+      | last_name    | Smith |
+      | zip_code     | 10001 |
+    And I can't sign up "tom@smith.net" using:
+      | code         | 1234  |
+      | last_name    | Smith |
+      | zip_code     | 10001 |

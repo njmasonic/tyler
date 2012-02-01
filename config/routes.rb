@@ -5,8 +5,10 @@ Tyler::Application.routes.draw do
   match '/sign_in', controller: 'sessions', action: 'new', as: 'sign_in'
   match '/sign_out', controller: 'sessions', action: 'destroy', as: 'sign_out'
 
-  resources :users, only: [:new, :create, :show]
-  match '/sign_up', controller: 'users', action: 'new', as: 'sign_up'
+  resources :users, only: [:show]
+
+  resources :registrations, only: [:new, :create]
+  match '/sign_up', controller: 'registrations', action: 'new', as: 'sign_up'
 
   match '/validate', controller: 'tokens', action: 'validate', as: 'validate'
 

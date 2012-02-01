@@ -15,12 +15,14 @@ end
 
 # Sign up
 
-When /^I sign up (?:with|as) "(.*)" and "(.*)"$/ do |email, password|
+When /^I sign up (?:with|as) "(.*)" and "(.*)" using code "(.*)"$/ do |email, password, code|
+  step %{the authorization code "1234" is valid and unused}
   visit sign_up_path
   page.should have_css("input[type='email']")
 
   fill_in "Email", :with => email
   fill_in "Password", :with => password
+  fill_in "Code", :with => code
   click_button "Sign up"
 end
 
@@ -115,11 +117,9 @@ end
 # Verification
 
 Then /^I should be signed in$/ do
-  visit "/"
   page.should have_content "Sign out"
 end
 
 Then /^I should be signed out$/ do
-  visit "/"
   page.should have_content "Sign in"
 end

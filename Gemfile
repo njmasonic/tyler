@@ -27,7 +27,7 @@ gem 'clearance'
 group :development, :test do
   gem 'rspec-rails'
   gem 'cucumber-rails'
-  gem 'shoulda-matchers'
+  gem 'shoulda-matchers', git: 'git://github.com/thoughtbot/shoulda-matchers.git'
   gem 'json_spec'
   gem 'webmock'
   gem 'database_cleaner'

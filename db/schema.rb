@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120130210452) do
+ActiveRecord::Schema.define(:version => 20120131134634) do
 
   create_table "api_keys", :force => true do |t|
     t.string   "key"
@@ -27,11 +27,9 @@ ActiveRecord::Schema.define(:version => 20120130210452) do
     t.integer  "created_by_api_key_id"
     t.datetime "created_at",            :null => false
     t.datetime "updated_at",            :null => false
-    t.integer  "user_id"
   end
 
   add_index "authorizations", ["code"], :name => "index_authorizations_on_code"
-  add_index "authorizations", ["user_id"], :name => "index_authorizations_on_user_id"
 
   create_table "consumers", :force => true do |t|
     t.string   "name"
@@ -39,6 +37,16 @@ ActiveRecord::Schema.define(:version => 20120130210452) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "registrations", :force => true do |t|
+    t.integer "user_id"
+    t.integer "authorization_id"
+    t.string  "code"
+    t.text    "properties"
+  end
+
+  add_index "registrations", ["authorization_id"], :name => "index_registrations_on_authorization_id"
+  add_index "registrations", ["user_id"], :name => "index_registrations_on_user_id"
 
   create_table "tokens", :force => true do |t|
     t.string   "token"

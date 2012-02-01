@@ -12,8 +12,12 @@ Given /^the following attributes are required for registration:$/ do |table|
   end
 end
 
-Given /^authorization is not required for registration$/ do
+Given /^there are no configured registration properties$/ do
   APP_CONFIG["registration_properties"] = []
+end
+
+Given /^the authorization code "([^"]*)" is valid and unused$/ do |authorization_code|
+  Authorization.create! code: authorization_code
 end
 
 When /^I use the api key "([^"]*)" to create the authorization:$/ do |key, table|
@@ -25,12 +29,12 @@ end
 
 Then /^I can sign up "([^"]*)" using:$/ do |email, table|
   step %{I fill in the sign up form for "#{email}" using:}, table
-  page.should_not have_content('Unable to register')
+  page.should_not have_content('Registration information is not valid')
 end
 
 Then /^I can't sign up "([^"]*)" using:$/ do |email, table|
   step %{I fill in the sign up form for "#{email}" using:}, table
-  page.should have_content('Unable to register')
+  page.should have_content('Registration information is not valid')
 end
 
 Then /^I fill in the sign up form for "([^"]*)" using:$/ do |email, table|

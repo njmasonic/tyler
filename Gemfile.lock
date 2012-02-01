@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/thoughtbot/shoulda-matchers.git
+  revision: 25c2623bb9d96cf6a446ecc141fdfefe5c4860fa
+  specs:
+    shoulda-matchers (1.0.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -161,7 +167,6 @@ GEM
       ffi (~> 1.0.9)
       multi_json (~> 1.0.4)
       rubyzip
-    shoulda-matchers (1.0.0)
     sprockets (2.1.2)
       hike (~> 1.2)
       rack (~> 1.0)
@@ -206,7 +211,7 @@ DEPENDENCIES
   rails (= 3.2.0)
   rspec-rails
   sass-rails (~> 3.2.3)
-  shoulda-matchers
+  shoulda-matchers!
   sqlite3
   thin
   uglifier (>= 1.0.3)

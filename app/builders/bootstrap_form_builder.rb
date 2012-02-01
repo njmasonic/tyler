@@ -22,4 +22,30 @@ class BootstrapFormBuilder < ActionView::Helpers::FormBuilder
       end
     end
   end
+
+  def errors
+    if object.errors.any?
+      @template.content_tag :div, :class => "alert-message" do
+        @template.content_tag(:h3) { "Oops!" } +
+        @template.content_tag(:ul) do
+          object.errors.collect do |attribute, message|
+            @template.content_tag(:li) { error_message_for(attribute, message) }
+          end.join.html_safe
+        end
+      end
+    end
+  end
+
+  private
+
+  def error_message_for(attribute, message)
+    return message if attribute == :base
+    attr_name = /^(.*\.)?(.*)$/.match(attribute.to_s)[2].humanize
+    attr_name = object.class.human_attribute_name(attribute, :default => attr_name)
+    I18n.t(:"errors.format", {
+      :default   => "%{attribute} %{message}",
+      :attribute => attr_name,
+      :message   => message
+    })
+  end
 end

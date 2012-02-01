@@ -1,0 +1,30 @@
+<%= form_for @registration, :builder => BootstrapFormBuilder do |form| %>
+  <%= form.errors %>
+  <div class="row">
+    <div class="span1">&nbsp;</div>
+    <div class="span8">
+      <%= form.section "Registration Information" do %>
+        <%= form.text_field :code %>
+        <%= form.fields_for :properties do |properties_form| %>
+          <% @registration.properties.each_key do |property| %>
+            <%= properties_form.text_field property %>
+          <% end %>
+        <% end %>
+      <% end %>
+      <%= form.section "Your New Account" do %>
+        <%= form.fields_for :user do |user_form| %>
+          <%= user_form.text_field :email, :type => "email" %>
+          <%= user_form.password_field :password %>
+        <% end %>
+      <% end %>
+      <%= form.submit 'Sign up' %>
+    </div>
+    <div class="span4">
+      <h3>Help</h3>
+      <p>
+        Helpful information about registering for an account goes here. Talk about competing the required registration information, entering a valid e-mail address, selecting a new password, etc.
+      </p>
+    </div>
+    <div class="span3">&nbsp;</div>
+  </div>
+<% end %>
