@@ -42,3 +42,9 @@ ul.sign_in li
   margin-bottom: 18px;
   font-size: 15px;
 }
+
+form div.help
+{
+  margin-left: 150px;
+  margin-bottom: 18px;
+}

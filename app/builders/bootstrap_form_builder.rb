@@ -1,7 +1,10 @@
 class BootstrapFormBuilder < ActionView::Helpers::FormBuilder
-  def section(name, &block)
+  def section(name, description="", &block)
+    if !description.empty?
+      description = @template.content_tag(:div, :class => "help") { description }
+    end
     @template.content_tag :fieldset do
-      @template.content_tag(:legend, name) + @template.capture(&block)
+      @template.content_tag(:legend, name) + description + @template.capture(&block)
     end
   end
 

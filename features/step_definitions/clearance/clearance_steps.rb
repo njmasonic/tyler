@@ -62,7 +62,7 @@ When /^I reset the password for "(.*)"$/ do |email|
   visit new_password_path
   page.should have_css("input[type='email']")
 
-  fill_in "Email address", :with => email
+  fill_in "Email", :with => email
   click_button "Reset password"
 end
 

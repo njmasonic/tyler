@@ -1,15 +1,12 @@
-<h2>Reset your password</h2>
-
-<p>
-  We will email you a link to reset your password.
-</p>
-
-<%= form_for :password, :url => passwords_path do |form| %>
-  <div class="text_field">
-    <%= form.label :email, "Email address" %>
-    <%= form.text_field :email, :type => "email" %>
+<div class="row">
+  <div class="span3">&nbsp;</div>
+  <div class="span9">
+    <%= form_for :password, :url => passwords_path, :builder => BootstrapFormBuilder do |form| %>
+      <%= form.section "Reset your password", "We will email you a link to reset your password" do %>
+        <%= form.text_field :email, :type => "email" %>
+        <%= form.submit "Reset password" %>
+      <% end %>
+    <% end %>
   </div>
-  <div class="submit_field">
-    <%= form.submit "Reset password" %>
-  </div>
-<% end %>
+  <div class="span4">&nbsp;</div>
+</div>
