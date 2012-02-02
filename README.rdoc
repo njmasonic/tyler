@@ -1,8 +1,0 @@
-== Tyler
-
-Tyler is a SSO solution originally designed for the Grand Lodge of New Jersey. Its purpose is similar to that
-of the Tyler of a Masonic lodge. The protocol is a cross between CAS and OpenID. The principal is that a user
-can use a single credential to access multiple resources (consumers) while Grand Lodge can maintain a single
-authoritize database of access credentials. User credentials are never transmitted to a consuming website.
-
-This is a work in progress, more information will be available soon.
