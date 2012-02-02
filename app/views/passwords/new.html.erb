@@ -1,8 +1,9 @@
 <div class="row">
   <div class="span3">&nbsp;</div>
   <div class="span9">
+    <br/><br/>
     <%= form_for :password, :url => passwords_path, :builder => BootstrapFormBuilder do |form| %>
-      <%= form.section "Reset your password", "We will email you a link to reset your password" do %>
+      <%= form.section "Reset your password", "We will email you a link to reset your password." do %>
         <%= form.text_field :email, :type => "email" %>
         <%= form.submit "Reset password" %>
       <% end %>

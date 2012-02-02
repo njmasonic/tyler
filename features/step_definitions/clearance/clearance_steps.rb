@@ -92,7 +92,7 @@ When /^I change the password of "(.*)" without token$/ do |email|
 end
 
 When /^I update my password with "(.*)"$/ do |password|
-  fill_in "Choose password", :with => password
+  fill_in "Password", :with => password
   click_button "Save this password"
 end
 
