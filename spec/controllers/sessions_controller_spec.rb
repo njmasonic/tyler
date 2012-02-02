@@ -8,7 +8,7 @@ describe SessionsController do
   describe "with a consumer supplied" do
     before do
       Consumer.stub(:find_by_name).with('lodge00').and_return(consumer)
-      Token.stub(:find_or_create_by_consumer_id_and_user_id).with(consumer, user).and_return(token)
+      Token.stub(:find_or_create_by_consumer_id_and_user_id).with(consumer.id, user.id).and_return(token)
     end
 
     describe "GET new", "without an existing session" do

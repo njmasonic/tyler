@@ -41,7 +41,7 @@ class SessionsController < Clearance::SessionsController
   end
 
   def fetch_token(consumer, user)
-    Token.find_or_create_by_consumer_id_and_user_id(consumer, user)
+    Token.find_or_create_by_consumer_id_and_user_id(consumer.id, user.id)
   end
 
   def redirect_to_consumer(consumer, user)
