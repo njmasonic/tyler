@@ -31,20 +31,20 @@ SSO API
 -------
 
 1. A consuming website is registered in advance with Tyler using an assigned name and return url.
-2. When a consuming website requires a user to login it uses a link to redirect to send the user to
-   <tt>https://tyler.yourorganization.com/sign_in?consumer=name</tt> where the server name is your instance
-   of Tyler and name is the registered name of the consuming website.
+2. When a consuming website requires a user to login it uses a link or HTTP redirect to send the user to
+   <tt>https://tyler.yourorganization.com/sign_in?consumer=name</tt> where "tyler.yourorganization.com" is your instance
+   of Tyler and "name" is the registered name of the consuming website.
 3. Tyler allows the user to sign in or create an account and then redirects back to 
-   <tt>http://www.consumingwebsite.com/return_url?token=abcd1234</tt> where the url is the return url on file 
-   for the consumer and abcd1234 is a unique token.
-4. The consuming website reads the token and makes a web service HTTP GET call to
-   <tt>https://tyler.yourorganization.com/validate?token=abcd1234</tt>.  Tyler will return information about
-   the user in JSON format if the token is valid, otherwise it will return HTTP 404.  The consuming website
+   <tt>http://www.consumingwebsite.com/return_url?token=abcd1234</tt> where "www.consumingwebsite.com/return_url" is the
+   return url on record for the consumer and "abcd1234" is a unique token.
+4. The consuming website reads the token and makes a web service HTTP GET request to
+   <tt>https://tyler.yourorganization.com/validate?token=abcd1234</tt>.  If the token is valid, Tyler will return
+   information about the user in JSON format, otherwise it will return HTTP 404.  The consuming website
    must validate the token within five minutes.  It is highly recommended tha the consuming website redirect
    the user to an originating URL after the token is successfully validated so that the user cannot accidentally
    hit refresh and cause an error after five minutes.
 5. If a consuming website would like to give the user an opportunity to sign off they can create a link to
-   <tt>https://tyler.yourorganization.com/sign_off</tt>.  Note that there is no way for a consuming website to
+   <tt>https://tyler.yourorganization.com/sign_off</tt>.  This is optional.  There is no way for a consuming website to
    sign off a user directly, the request must come from the user's browser.
 
 Authorization API
