@@ -1,8 +1,10 @@
-<%= form_for :session, :url => session_path, :builder => BootstrapFormBuilder do |form| %>
+<%= form_for :session, :url => session_path, :html => { :class => "form-horizontal" }, :builder => BootstrapFormBuilder do |form| %>
   <%= form.section "Sign in" do %>
-    <%= form.hidden_field :consumer, :value => params[:consumer] %>
     <%= form.text_field :email, :type => "email" %>
     <%= form.password_field :password %>
+    <%= form.hidden_field :consumer, :value => params[:consumer] %>
+  <% end %>
+  <%= form.actions do %>
     <%= form.submit "Sign in" %>
   <% end %>
 <% end %>

@@ -1,13 +1,14 @@
 <div class="row">
   <div class="span3">&nbsp;</div>
-  <div class="span9">
-    <br/><br/>
-    <%= form_for :password, :url => passwords_path, :builder => BootstrapFormBuilder do |form| %>
+  <div class="span6">
+    <%= form_for :password, :url => passwords_path, :html => { :class => "form-horizontal" }, :builder => BootstrapFormBuilder do |form| %>
       <%= form.section "Reset your password", "We will email you a link to reset your password." do %>
-        <%= form.text_field :email, :type => "email" %>
+        <%= form.email_field :email %>
+      <% end %>
+      <%= form.actions do %>
         <%= form.submit "Reset password" %>
       <% end %>
     <% end %>
   </div>
-  <div class="span4">&nbsp;</div>
+  <div class="span3">&nbsp;</div>
 </div>
