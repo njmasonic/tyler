@@ -1,20 +1,34 @@
-<div style="height: 80px">&nbsp;</div>
-<div class="row">
-  <div class="span1">&nbsp;</div>
-  <div class="span6">
-    <%= render :partial => 'form' %>
+<%= form_for :session, :url => session_path, :html => { :class => "form-horizontal" }, :builder => BootstrapFormBuilder do |form| %>
+  <div class="row">
+    <div class="span2">&nbsp;</div>
+    <div class="span5">
+      <%= form.section "Sign in" do %>
+        <%= form.text_field :email, :type => "email" %>
+        <%= form.password_field :password %>
+        <%= form.hidden_field :consumer, :value => params[:consumer] %>
+      <% end %>
+    </div>
+    <div class="span3">
+      <h3>Other Options</h3>
+      <ul class="nav nav-pills nav-stacked" style="padding: 8px 0">
+        <li>
+          <%= link_to "Sign up for an account", sign_up_path %>
+        </li>
+        <li>
+          <%= link_to "Forgot password?", new_password_path %>
+        </li>
+      </ul>
+    </div>
+    <div class="span2">&nbsp;</div>
   </div>
-  <div class="span2">&nbsp;</div>
-  <div class="span6">
-    <h3>Register</h3>
-    <ul class="sign_in">
-      <li>
-        <%= link_to "Sign up for an account", sign_up_path %>
-      </li>
-      <li>
-        <%= link_to "Forgot password?", new_password_path %>
-      </li>
-    </ul>
+  <div class="row">
+    <div class="span2">&nbsp;</div>
+    <div class="span8">
+      <%= form.actions do %>
+        <%= form.submit "Sign in" %>
+        <%= "and return to #{params[:consumer].humanize}" if params[:consumer] %>
+      <% end %>
+    </div>
+    <div class="span2">&nbsp;</div>
   </div>
-  <div class="span1">&nbsp;</div>
-</div>
+<% end %>
