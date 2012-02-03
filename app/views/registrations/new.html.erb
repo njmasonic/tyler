@@ -1,8 +1,14 @@
-<%= form_for @registration, :builder => BootstrapFormBuilder do |form| %>
-  <%= form.errors %>
+<%= form_for @registration, :builder => BootstrapFormBuilder, :html => { :class => "form-horizontal" } do |form| %>
   <div class="row">
-    <div class="span1">&nbsp;</div>
+    <div class="span2">&nbsp;</div>
     <div class="span8">
+      <%= form.errors %>
+    </div>
+    <div class="span2">&nbsp;</div>
+  </div>
+  <div class="row">
+    <div class="span2">&nbsp;</div>
+    <div class="span5">
       <%= form.section "Registration Information" do %>
         <%= form.text_field :code %>
         <%= form.fields_for :properties do |properties_form| %>
@@ -17,14 +23,22 @@
           <%= user_form.password_field :password %>
         <% end %>
       <% end %>
-      <%= form.submit 'Sign up' %>
     </div>
-    <div class="span4">
+    <div class="span3">
       <h3>Help</h3>
       <p>
         Helpful information about registering for an account goes here. Talk about competing the required registration information, entering a valid e-mail address, selecting a new password, etc.
       </p>
     </div>
-    <div class="span3">&nbsp;</div>
+    <div class="span2">&nbsp;</div>
+  </div>
+  <div class="row">
+    <div class="span2">&nbsp;</div>
+    <div class="span8">
+      <%= form.actions do %>
+        <%= form.submit 'Sign up' %>
+      <% end %>
+    </div>
+    <div class="span2">&nbsp;</div>
   </div>
 <% end %>

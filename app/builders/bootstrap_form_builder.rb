@@ -8,28 +8,42 @@ class BootstrapFormBuilder < ActionView::Helpers::FormBuilder
     end
   end
 
+  def actions(&block)
+    @template.content_tag(:div, :class => "form-actions") do
+      @template.capture(&block)
+    end
+  end
+
   %w[text_field password_field].each do |method_name|
     define_method(method_name) do |name, *args|
-      @template.content_tag :div, :class => "clearfix" do
-        label(name) + @template.content_tag(:div, :class => "input") do
+      @template.content_tag(:div, :class => "control-group") do
+        label(name) + @template.content_tag(:div, :class => "controls") do
           super(name, *args)
         end
       end
     end
   end
 
-  def submit(name, *args)
-    @template.content_tag :div, :class => "clearfix" do
-      @template.content_tag(:div, :class => "input") do
-        super(name, :class => "btn primary")
+  def email_field(name, *args)
+    @template.content_tag(:div, :class => "control-group") do
+      label(name) + @template.content_tag(:div, :class => "controls") do
+        @template.content_tag(:div, :class => "input-prepend") do
+          @template.content_tag(:span, :class => "add-on") do
+            @template.content_tag(:i, :class => "icon-envelope") {}
+          end + super(name, *args)
+        end
       end
     end
   end
 
+  def submit(name, *args)
+    super(name, :class => "btn btn-primary")
+  end
+
   def errors
     if object.errors.any?
-      @template.content_tag :div, :class => "alert-message" do
-        @template.content_tag(:h3) { "Oops!" } +
+      @template.content_tag :div, :class => "alert" do
+        @template.content_tag(:h4, :class => "alert-heading") { "Oops!" } +
         @template.content_tag(:ul) do
           object.errors.collect do |attribute, message|
             @template.content_tag(:li) { error_message_for(attribute, message) }
