@@ -1,5 +1,6 @@
 class Api::AuthorizationsController < ApplicationController
   respond_to :json
+  skip_before_filter :verify_authenticity_token
 
   def create
     api_key = ApiKey.find_by_key(params[:key])
