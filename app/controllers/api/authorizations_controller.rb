@@ -5,7 +5,7 @@ class Api::AuthorizationsController < ApplicationController
   def create
     api_key = ApiKey.find_by_key(params[:key])
     if api_key
-      authorization = Authorization.create!(params_for_authorization)
+      authorization = Authorization.create!(params_for_authorization.merge('created_by_api_key_id' => api_key.id))
       render :json => authorization.to_json
     else
       render :json => nil, :status => :not_found

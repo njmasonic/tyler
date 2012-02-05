@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Api::AuthorizationsController do
   describe "#create", "with valid parameters" do
     let(:authorization) { mock_model(Authorization, save: true, to_json: 'mockjson') }
-    let(:valid_api_key) { mock_model(ApiKey) }
+    let(:valid_api_key) { mock_model(ApiKey, id: 72) }
 
     before do
       post_parameters = 
@@ -18,6 +18,7 @@ describe Api::AuthorizationsController do
       create_parameters =
       {
         'code' => '1234',
+        'created_by_api_key_id' => 72,
         'properties' => 
         {
           'other' => 'othervalue'
