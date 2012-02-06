@@ -5,6 +5,8 @@ Tyler is a single sign on solution originally designed for the Grand Ldoge of Ne
 
 Authorization information is populated using the Authorization API. Any number of external applications can use the Authorization API to update authorization entries that act as booth pre-registration credentials and a collection of arbitrary attributes to be shared with consuming websites. The exact attributes are defined by the Tyler administrator. Tyler does not contain anything specifically for Masons and can be used as a general purpose single sign on solution so long as Tyler's assumptions are acceptible to you.
 
+![Sign up page](http://i.imgur.com/qLivJ.png)
+
 Assumptions
 -----------
 
