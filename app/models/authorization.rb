@@ -3,5 +3,8 @@ class Authorization < ActiveRecord::Base
   has_one :registration
   has_one :user, :through => :registration
 
+  validates_presence_of :code
+  validates_uniqueness_of :code
+
   store :properties
 end

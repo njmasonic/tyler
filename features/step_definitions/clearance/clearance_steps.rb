@@ -16,7 +16,6 @@ end
 # Sign up
 
 When /^I sign up (?:with|as) "(.*)" and "(.*)" using code "(.*)"$/ do |email, password, code|
-  step %{the authorization code "1234" is valid and unused}
   visit sign_up_path
   page.should have_css("input[type='email']")
 
