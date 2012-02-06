@@ -49,6 +49,8 @@ SSO API
    <tt>https://tyler.yourorganization.com/sign_off</tt>.  This is optional.  There is no way for a consuming website to
    sign off a user directly, the request must come from the user's browser.
 
+![SSO Process Illustration](http://i.imgur.com/89CQM.png)
+
 Authorization API
 -----------------
 
